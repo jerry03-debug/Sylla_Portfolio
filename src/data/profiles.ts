@@ -54,7 +54,9 @@ export const profiles: Profile[] = [
       "PostgreSQL",
       "Microsoft Azure DevOps",
       "Jira",
-      "GitLab"
+      "GitLab",
+      "Node",
+      "Angular"
     ],
     certifications: [
       {

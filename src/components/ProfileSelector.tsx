@@ -14,7 +14,9 @@ interface ProfileSelectorProps {
 
 export const ProfileSelector = ({ profiles, currentProfile, setCurrentProfile }: ProfileSelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const currentProfileData = profiles.find(p => p.id === currentProfile)!;
+  const currentProfileData = profiles?.find(p => p?.id === currentProfile);
+
+  if (!currentProfileData) return null;
 
   return (
     <div className="fixed top-4 right-4 z-50">
@@ -26,8 +28,8 @@ export const ProfileSelector = ({ profiles, currentProfile, setCurrentProfile }:
           className="w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg focus:outline-none"
         >
           <Image
-            src={currentProfileData.avatar}
-            alt={currentProfileData.name}
+            src={currentProfileData?.avatar}
+            alt={currentProfileData?.name}
             width={40}
             height={40}
             className="object-cover"
@@ -42,25 +44,25 @@ export const ProfileSelector = ({ profiles, currentProfile, setCurrentProfile }:
               exit={{ opacity: 0, y: -10 }}
               className="absolute right-0 mt-2 bg-white rounded-lg shadow-lg overflow-hidden"
             >
-              {profiles.map((profile) => (
+              {profiles?.map((profile) => (
                 <button
-                  key={profile.id}
+                  key={profile?.id}
                   onClick={() => {
-                    setCurrentProfile(profile.id);
+                    setCurrentProfile(profile?.id);
                     setIsOpen(false);
                   }}
                   className="flex items-center w-full px-4 py-2 hover:bg-gray-50 transition-colors"
                 >
                   <div className="w-8 h-8 rounded-full overflow-hidden mr-2">
                     <Image
-                      src={profile.avatar}
-                      alt={profile.name}
+                      src={profile?.avatar}
+                      alt={profile?.name}
                       width={32}
                       height={32}
                       className="object-cover"
                     />
                   </div>
-                  <span className="text-sm text-gray-700">{profile.name}</span>
+                  <span className="text-gray-900">{profile?.name}</span>
                 </button>
               ))}
             </motion.div>

@@ -31,7 +31,7 @@ export const EducationCard = ({ school, degree, field, period, level, activities
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-black">
-            {school.charAt(0)}
+            {school?.charAt(0)}
           </div>
         )}
       </div>

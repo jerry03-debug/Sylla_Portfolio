@@ -47,10 +47,7 @@ export const Navbar = ({ currentProfile }: NavbarProps) => {
                 <a
                   key={section.id}
                   href={`#${section.id}`}
-                  className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  style={{ 
-                    '&:hover': { color: theme.primary }
-                  }}
+                  className={`text-gray-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 hover:text-[${theme.primary}]`}
                 >
                   {section.name}
                 </a>
@@ -60,13 +57,13 @@ export const Navbar = ({ currentProfile }: NavbarProps) => {
         </div>
 
         {/* Mobile menu */}
-        <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {sections.map((section) => (
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="block text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-base font-medium"
+                className={`text-gray-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:text-[${theme.primary}]`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {section.name}

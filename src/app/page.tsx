@@ -23,7 +23,7 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css';
 import { PopIn } from '../components/PopIn';
 import { SkillBall } from '../components/SkillBall';
-import { FaReact, FaGitlab } from 'react-icons/fa';
+import { FaReact, FaGitlab,FaNode,FaAngular  } from 'react-icons/fa';
 import { BiLogoPostgresql } from 'react-icons/bi';
 import { SiJira } from 'react-icons/si';
 import { VscAzureDevops } from "react-icons/vsc";
@@ -35,6 +35,8 @@ const defaultIcon = <CodeBracketIcon />;
 
 const skillIcons: { [key: string]: React.ReactNode } = {
   'JavaScript': <CodeBracketIcon />,
+  'Node': <FaNode size={52}/>,
+  'Angular': <FaAngular size={52}/>,
   'TypeScript': <CodeBracketIcon />,
   'Python': <CommandLineIcon />,
   'Documentation': <DocumentTextIcon />,
@@ -48,9 +50,11 @@ const skillIcons: { [key: string]: React.ReactNode } = {
 };
 
 export default function Home() {
-  const [currentProfile, setCurrentProfile] = useState(profiles[0].id);
-  const profile = profiles.find(p => p.id === currentProfile)!;
-  const theme = themes[currentProfile as keyof typeof themes];
+  const [currentProfile, setCurrentProfile] = useState(profiles?.[0]?.id);
+  const profile = profiles?.find(p => p?.id === currentProfile);
+  const theme = themes?.[currentProfile as keyof typeof themes];
+
+  if (!profile || !theme) return null;
 
   return (
     <main className="min-h-screen">
