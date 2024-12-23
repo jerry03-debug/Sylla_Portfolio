@@ -48,7 +48,9 @@ export const Navbar = ({ currentProfile }: NavbarProps) => {
                   key={section.id}
                   href={`#${section.id}`}
                   className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  
+                  style={{ 
+                    '&:hover': { color: theme.primary }
+                  }}
                 >
                   {section.name}
                 </a>

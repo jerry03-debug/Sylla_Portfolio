@@ -75,3 +75,32 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-start-rgb));
 }
+
+/* Timeline customization */
+.vertical-timeline {
+  width: 95%;
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.vertical-timeline-element-content {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+  padding: 2rem !important;
+}
+
+.vertical-timeline-element-content-arrow {
+  border-right: 7px solid #fff !important;
+}
+
+.vertical-timeline-element-date {
+  color: #666 !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+@media only screen and (min-width: 1170px) {
+  .vertical-timeline-element-date {
+    font-size: 1rem !important;
+    padding: 1rem !important;
+  }
+}
