@@ -180,7 +180,8 @@ export const profiles: Profile[] = [
     ],
     education: [
       {
-        institution: "Faculté de Pharmacie",
+        school: "Faculté de Pharmacie",
+        field: "Pharmacie",
         degree: "Doctorat en Pharmacie",
         period: "2015 - 2020"
       }
