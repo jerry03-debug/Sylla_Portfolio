@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { profiles } from '../data/profiles';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Profile } from '../types/profile';
+import { Profile } from '../data/profiles';
 
 interface ProfileSelectorProps {
   profiles: Profile[];
