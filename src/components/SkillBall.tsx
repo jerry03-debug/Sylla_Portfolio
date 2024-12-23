@@ -20,7 +20,7 @@ const Ball = ({ icon, color }: { icon: React.ReactNode; color: string }) => {
       groupRef.current.position.y = y;
     }
     if (iconRef.current) {
-      iconRef.current.style.transform = ` translateY(${-groupRef.current?.position.y ?? 0}px)`;
+      iconRef.current.style.transform = ` translateY(${-groupRef.current?.position.y}px)`;
     }
   });
 
