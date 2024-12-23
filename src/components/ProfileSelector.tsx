@@ -4,13 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { profiles } from '../data/profiles';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Profile } from '../types/profile';
 
 interface ProfileSelectorProps {
+  profiles: Profile[];
   currentProfile: string;
-  onProfileChange: (profileId: string) => void;
+  setCurrentProfile: (profileId: string) => void;
 }
 
-export const ProfileSelector = ({ currentProfile, onProfileChange }: ProfileSelectorProps) => {
+export const ProfileSelector = ({ profiles, currentProfile, setCurrentProfile }: ProfileSelectorProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const currentProfileData = profiles.find(p => p.id === currentProfile)!;
 
@@ -44,7 +46,7 @@ export const ProfileSelector = ({ currentProfile, onProfileChange }: ProfileSele
                 <button
                   key={profile.id}
                   onClick={() => {
-                    onProfileChange(profile.id);
+                    setCurrentProfile(profile.id);
                     setIsOpen(false);
                   }}
                   className="flex items-center w-full px-4 py-2 hover:bg-gray-50 transition-colors"
