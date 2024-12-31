@@ -6,8 +6,7 @@ import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
-import emailjs from '@emailjs/browser';
-import { emailConfig } from '../config/email';
+import SendEmail from './SendEmail';
 
 gsap.registerPlugin(TextPlugin);
 
@@ -38,7 +37,7 @@ export const ContactForm = () => {
     'Travaillons ensemble...',
     'Discutons de votre projet...'
   ];
-
+  
   useEffect(() => {
     const title = titleRef.current;
     if (!title) return;
@@ -64,45 +63,23 @@ export const ContactForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    console.log("formdata", formData);
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    setStatus({ type: null, message: '' });
 
     try {
-      if (!formRef.current) return;
-
-      const result = await emailjs.sendForm(
-        emailConfig.serviceId,
-        emailConfig.templateId,
-        formRef.current,
-        emailConfig.publicKey
-      );
-
-      if (result.text === 'OK') {
-        setStatus({
-          type: 'success',
-          message: 'Message envoyé avec succès !'
-        });
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      }
+      await SendEmail({ formData: { ...formData } });
+      setStatus({ type: 'success', message: 'Email envoyé avec succès!' });
     } catch (error) {
-      console.error('Error sending email:', error);
-      setStatus({
-        type: 'error',
-        message: 'Une erreur est survenue lors de l\'envoi du message.'
-      });
+      console.error(error);
+      setStatus({ type: 'error', message: 'Erreur lors de l’envoi de l’email.' });
     } finally {
       setIsLoading(false);
     }
@@ -144,7 +121,7 @@ export const ContactForm = () => {
           </motion.a>
           
           <motion.a
-            href="https://www.linkedin.com/in/mouhamed-moustapha-sylla"
+            href="https://www.linkedin.com/in/mouhamed-sylla-8b49a0146/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
@@ -183,7 +160,7 @@ export const ContactForm = () => {
           >
             <input
               type="text"
-              name="from_name"
+              name="name"
               value={formData.name}
               onChange={handleChange}
               placeholder="Votre nom"
@@ -199,7 +176,7 @@ export const ContactForm = () => {
           >
             <input
               type="email"
-              name="reply_to"
+              name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="Votre email"
