@@ -19,7 +19,7 @@ const SendEmail = async ({ formData }: SendEmailProps) => {
     const response = await resend.emails.send({
       from: "onboarding@resend.dev",
       //Create a resend account and put the profile email here
-      to: 'diadiery3@gmail.com',
+      to: 'toubatayssir@gmail.com',
       subject: formData?.subject,
       html: `<p>De la part de : ${formData?.name} - ${formData?.email}<br>${formData?.message}</p>`
     });
